@@ -95,13 +95,9 @@ export default async function Home() {
   noStore();
 
   const session = await auth();
-  // limit to 100 users and cache for 60 seconds.
+  // limit to 100 users
   const users = await prisma.user.findMany({
     take: 100,
-    cacheStrategy: {
-      ttl: 60,
-      swr: 60,
-    },
   });
 
   return (
